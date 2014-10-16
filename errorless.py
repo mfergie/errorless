@@ -54,10 +54,9 @@ class CommandLoop(cmd.Cmd):
         """
         try:
             error_no = int(line) - 1
+            print_error(self.errors[error_no])
         except ValueError:
             print("Syntax: show <error number>")
-        try:
-            print_error(self.errors[error_no])
         except IndexError:
             print "Error doesn't exist."
 
@@ -66,6 +65,12 @@ class CommandLoop(cmd.Cmd):
         Re-run compilation.
         """
         self.errors = self.compile_fn()
+
+    def do_quit(self, line):
+        """
+        Exit program.
+        """
+        return True
 
     def do_EOF(self, line):
         """
@@ -103,10 +108,15 @@ def capture_compiler_output(compiler_shell_command):
 
     stdout_data, stderr_data = compile_process.communicate()
     lines = stderr_data.split('\n')
-    print stdout_data
+
+    print("stdout:")
+    print(stdout_data)
+
+    print("stderr:")
+    print(stderr_data)
 
     # lines = []
-    # while True:
+    # while compile_process.poll() is None:
     #     stdout_line = compile_process.stdout.readline()
     #     if stdout_line != '':
     #         print(stdout_line)
@@ -114,9 +124,6 @@ def capture_compiler_output(compiler_shell_command):
     #     if stderr_line != '':
     #         print(stderr_line)
     #         lines.append(stderr_line)
-    #     if stdout_line == '' and stderr_line == '':
-    #         break
-
 
     return lines
 
