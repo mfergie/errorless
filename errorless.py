@@ -102,10 +102,22 @@ def capture_compiler_output(compiler_shell_command):
     )
 
     stdout_data, stderr_data = compile_process.communicate()
-
+    lines = stderr_data.split('\n')
     print stdout_data
 
-    lines = stderr_data.split('\n')
+    # lines = []
+    # while True:
+    #     stdout_line = compile_process.stdout.readline()
+    #     if stdout_line != '':
+    #         print(stdout_line)
+    #     stderr_line = compile_process.stderr.readline()
+    #     if stderr_line != '':
+    #         print(stderr_line)
+    #         lines.append(stderr_line)
+    #     if stdout_line == '' and stderr_line == '':
+    #         break
+
+
     return lines
 
 def parse_errors(compiler_output):
