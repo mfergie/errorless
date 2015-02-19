@@ -58,7 +58,7 @@ class CommandLoop(cmd.Cmd):
         except ValueError:
             print("Syntax: show <error number>")
         except IndexError:
-            print "Error doesn't exist."
+            print("Error doesn't exist.")
 
     def do_make(self, line):
         """make
