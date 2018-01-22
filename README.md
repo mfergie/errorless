@@ -1,14 +1,16 @@
-#errorless – less for compiler errors.
+# errorless – less for compiler errors.
 
 errorless is a simple script for parsing and displaying compiler errors interactively.
 
-###Usage
+### Usage
 
 Pass your compiler shell command after `errorless`:
+```
+errorless make
+```
 
-    errorless make
+### Installation
 
-###Installation
-
-    pip install git+http://https://github.com/mfergie/errorless#egg=errorless
-
+```
+pip install git+http://https://github.com/mfergie/errorless#egg=errorless
+```
